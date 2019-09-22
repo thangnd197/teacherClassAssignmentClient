@@ -1,4 +1,5 @@
 import React from 'react';
+import {convertListWeeksToString} from './utils.js';
 class Classes extends React.Component {
 
   constructor(props) {
@@ -6,7 +7,7 @@ class Classes extends React.Component {
     this.state = {
       input: props.input
     }
-    console.log(this.state.input);
+    this.convertListWeeksToString = convertListWeeksToString;
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -24,9 +25,10 @@ class Classes extends React.Component {
           <td>{theClass.classCode}</td>
           <td>{theClass.course.courseCode}</td>
           <td>{theClass.course.courseName}</td>
-          <td>{theClass.timetable[0].startTime + "-" + theClass.timetable[0].endTime}</td>
-          <td>{theClass.timetable[0].weeks}</td>
-          <td>{theClass.timetable[0].weeks}</td>
+          <td>{theClass.course.credit}</td>
+          <td>{theClass.timetable.map((t) => t.startTime + "-" + t.endTime + "; ")}</td>
+          <td>{theClass.timetable.map((t) => this.convertListWeeksToString(t.weeks) + "; ")}</td>
+          <td>{theClass.timetable.map((t) => t.location + "; ")}</td>
         </tr>
     );
   }
@@ -40,9 +42,10 @@ class Classes extends React.Component {
               <th>Mã lớp</th>
               <th>Mã HP</th>
               <th>Tên lớp</th>
+              <th>Số tín</th>
               <th>Giờ học</th>
               <th>Tuần học</th>
-              <th>Tuần học</th>
+              <th>Phòng</th>
             </tr>
           </thead>
           <tbody>

@@ -15,10 +15,45 @@ class Course4teacher extends React.Component {
     return prevState;
   }
 
+  contentTable() {
+
+    var content = [];
+
+    for (var i in this.state.input.jsonInput.teachers) {
+      var teacher = this.state.input.jsonInput.teachers[i];
+      for (var key in teacher.listCourseCodes) {
+        const tmp = 
+          <tr key={teacher.teacherCode + '-' + key} className="row-table">
+            <td>{teacher.teacherName}</td>
+            <td>{teacher.teacherCode}</td>
+            <td>{key}</td>
+            <td>{teacher.listCourseNames[key]}</td>
+            <td>{teacher.listCourseCodes[key]}</td>
+          </tr>;
+        content.push(tmp);
+      }
+    }
+    return content;
+  }
+
   render() {
+
     return (
-      <div>
-        Course4teacher - {this.state.input.id}
+      <div>           
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Giảng viên</th>
+              <th>Email</th>
+              <th>Mã HP</th>
+              <th>Tên HP</th>
+              <th>Trọng số</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.contentTable()}
+          </tbody>
+        </table>
       </div>
     )
   }

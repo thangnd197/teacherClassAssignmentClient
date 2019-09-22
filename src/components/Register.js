@@ -5,12 +5,18 @@ class Register extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {"username": ""};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeUserName = this.handleChangeUserName.bind(this);
   }
 
-  handleSubmit() {
+  handleChangeUserName(e) {
+    this.setState({"username": e.target.value});
+  }
+
+  handleSubmit(e) {
     const formData = new FormData();
-    formData.append('name', 'thangnd');
+    formData.append('name', this.state.username);
   
     fetch(
       'http://localhost:8080/user',
@@ -34,9 +40,11 @@ class Register extends React.Component {
           {/* <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
           <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
           <input type="password" id="inputPasswordRetype" className="form-control" placeholder="Password" required/> */}
-          <input id="username" className="form-control" placeholder="username" required autoFocus/>
+          <input id="username" className="form-control" placeholder="username" required autoFocus
+            onChange={this.handleChangeUserName}/>
           <br></br>
           <button className="btn btn-lg btn-primary btn-block btn-signin" type="button"
+            value={this.state.username}
             onClick={this.handleSubmit}
             >Register</button>
         </form>

@@ -99,3 +99,25 @@ a {
     width: 100%;
     z-index: 100;
 }
+
+/***************************/
+.modal-body input {
+    margin: 20px 0px 20px 0px;
+}
+
+/*********************/
+.solving {
+    color: gray;
+}
+
+.solved {
+    color: green;
+}
+
+.modified {
+    color: blueviolet;
+}
+
+.unknown {
+    color: red;
+}
