@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalSolution from './ModalSolution';
+import ModalSolution from './modal/ModalSolution';
 
 class Solutions extends React.Component {
 
@@ -7,7 +7,7 @@ class Solutions extends React.Component {
     super(props);
     this.state = {
       solutions: [],
-      parameters: [],
+      // parameters: [],
       input: props.input
     }
     this.changeDetailSolution = this.props.changeDetailSolution;
@@ -19,6 +19,7 @@ class Solutions extends React.Component {
   }
 
   fetchData() {
+    
     fetch(
       'http://localhost:8080/input/' + this.state.input.id +'/solution'
     ).then(
@@ -46,7 +47,7 @@ class Solutions extends React.Component {
 
     this.state.solutions.forEach(element => {
       if (element.id === solution_id) {
-        this.changeDetailSolution("detail-solution", this.state.input.id, element);
+        this.changeDetailSolution("detail", element);
         return;
       }
     }); 
@@ -98,10 +99,6 @@ class Solutions extends React.Component {
             {this.contentTable()}
           </tbody>
         </table>
-
-        <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-          creat new
-        </button>
 
         <ModalSolution 
           input_id={this.state.input.id}

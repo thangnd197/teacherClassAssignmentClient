@@ -5,10 +5,10 @@ class ModalSolution extends React.Component{
     super(props);
     this.state = {
       input_id: props.input_id,
-      tabulen: 1,
-      maxTime: 1,
-      maxIter: 1,
-      maxStable: 1
+      tabulen: 100,
+      maxTime: 99999,
+      maxIter: 1000,
+      maxStable: 100
     };
 
     this.forceUpdateSolutions = props.fetchData;
@@ -59,7 +59,7 @@ class ModalSolution extends React.Component{
         body: formData
       }
     ).then((res) => {
-      console.log(res);
+      
       this.forceUpdateSolutions();
     });
   }

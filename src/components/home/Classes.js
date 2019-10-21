@@ -21,27 +21,29 @@ class Classes extends React.Component {
 
     return this.state.input.jsonInput.classes.map(
       (theClass) =>
-        <tr key={theClass.classCode} className="row-table">
-          <td>{theClass.classCode}</td>
-          <td>{theClass.course.courseCode}</td>
-          <td>{theClass.course.courseName}</td>
-          <td>{theClass.course.credit}</td>
-          <td>{theClass.timetable.map((t) => t.startTime + "-" + t.endTime + "; ")}</td>
-          <td>{theClass.timetable.map((t) => this.convertListWeeksToString(t.weeks) + "; ")}</td>
-          <td>{theClass.timetable.map((t) => t.location + "; ")}</td>
+        <tr key={theClass.code + "-" + theClass.course.type} className="row-table">
+          <td>{theClass.code}</td>
+          <td>{theClass.course.code}</td>
+          <td>{theClass.course.name}</td>
+          <td>{theClass.course.type}</td>
+          <td>{theClass.credit}</td>
+          <td>{theClass.timeTable.map((t) => t.startTime + "-" + t.endTime + "; ")}</td>
+          <td>{theClass.timeTable.map((t) => this.convertListWeeksToString(t.weeks) + "; ")}</td>
+          <td>{theClass.timeTable.map((t) => t.location + "; ")}</td>
         </tr>
     );
   }
 
   render() {
     return (
-      <div>           
+      <div className="scroll-space-app">           
         <table className="table">
           <thead>
             <tr>
               <th>Mã lớp</th>
               <th>Mã HP</th>
               <th>Tên lớp</th>
+              <th>Loại lớp</th>
               <th>Số tín</th>
               <th>Giờ học</th>
               <th>Tuần học</th>

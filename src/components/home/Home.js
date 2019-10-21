@@ -2,8 +2,7 @@ import React from 'react';
 import SideBar from './SideBar';
 import Classes from './Classes';
 import Course4teacher from './Course4teacher';
-import Solutions from './Solutions';
-import DetailSolution from './DetailSolution';
+import SolutionContainer from './solution/SolutionContainer';
 
 class Home extends React.Component {
 
@@ -17,7 +16,6 @@ class Home extends React.Component {
       solution: {}
     };
     this.changeStatePageContent = this.changeStatePageContent.bind(this);
-    this.changeDetailSolution = this.changeDetailSolution.bind(this);
   }
 
   componentDidMount() {
@@ -44,26 +42,19 @@ class Home extends React.Component {
     });
   }
 
-  changeDetailSolution(typePageContent, input_id, solution) {
-    this.setState({
-      typePageContent: typePageContent,
-      input_id: input_id,
-      solution: solution
-    });
-  }
-
   ngolanhuong() {
+    
     switch(this.state.typePageContent) {
       case "classes":
         return <Classes input={this.state.input}/>;
       case "course4teacher":
         return <Course4teacher input={this.state.input}/>;
       case "solutions":
-        return <Solutions input={this.state.input} changeDetailSolution={this.changeDetailSolution}/>;
-      case "detail-solution":
-        return <DetailSolution 
-                  input_id={this.state.input_id}
-                  solution={this.state.solution}/>;
+        return <SolutionContainer input={this.state.input} changeDetailSolution={this.changeDetailSolution}/>;
+      // case "detail-solution":
+      //   return <DetailSolution 
+      //             input_id={this.state.input_id}
+      //             solution={this.state.solution}/>;
       default:
         return <h3>nothing to show ban oi</h3>
     }
@@ -81,7 +72,7 @@ class Home extends React.Component {
                       changeStatePageContent={this.changeStatePageContent}/>
             }
           </div>
-          <div className="col-sm-10 scroll-space-app content-page">
+          <div className="col-sm-10  content-page">
             {this.ngolanhuong()}
           </div>
         </div>

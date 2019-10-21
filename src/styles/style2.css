@@ -121,3 +121,18 @@ a {
 .unknown {
     color: red;
 }
+
+/* navbar */
+.nav-button {
+    margin-left: 10px;
+}
+
+#create-btn {
+    background: #1e4d1e;
+    border: none;
+}
+
+#sta-btn, #vis-btn {
+    background: darkseagreen;
+    border: none;
+}

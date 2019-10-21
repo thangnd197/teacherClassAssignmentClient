@@ -21,14 +21,16 @@ class Course4teacher extends React.Component {
 
     for (var i in this.state.input.jsonInput.teachers) {
       var teacher = this.state.input.jsonInput.teachers[i];
-      for (var key in teacher.listCourseCodes) {
+      for (var j in teacher.courses) {
+        var course = teacher.courses[j];
         const tmp = 
-          <tr key={teacher.teacherCode + '-' + key} className="row-table">
-            <td>{teacher.teacherName}</td>
-            <td>{teacher.teacherCode}</td>
-            <td>{key}</td>
-            <td>{teacher.listCourseNames[key]}</td>
-            <td>{teacher.listCourseCodes[key]}</td>
+          <tr key={teacher.code + '-' + course.code + '-' + course.type} className="row-table">
+            <td>{teacher.name}</td>
+            <td>{teacher.code}</td>
+            <td>{course.code}</td>
+            <td>{course.type}</td>
+            <td>{course.name}</td>
+            <td>{course.priority}</td>
           </tr>;
         content.push(tmp);
       }
@@ -39,13 +41,14 @@ class Course4teacher extends React.Component {
   render() {
 
     return (
-      <div>           
+      <div className="scroll-space-app">           
         <table className="table">
           <thead>
             <tr>
               <th>Giảng viên</th>
               <th>Email</th>
               <th>Mã HP</th>
+              <th>Loại lớp</th>
               <th>Tên HP</th>
               <th>Trọng số</th>
             </tr>

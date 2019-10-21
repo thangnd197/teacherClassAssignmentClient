@@ -27,20 +27,20 @@ class App extends React.Component {
         <div id="content-app">
         <Route exact path="/" component={() => (
             (this.cookies.get('isLogin') !== 'false') ? 
-            <div className="content-header row">
-              <div className="col-sm-3">
-                <h2>Input list</h2>
+            <div>
+              <div className="content-header row">
+                <div className="col-sm-3">
+                  <h2>Input list</h2>
+                </div>
+                <div className="col-sm-8 content-header-page-content">
+                  <h2>Page content</h2>
+                </div>
               </div>
-              <div className="col-sm-9 content-header-page-content">
-                <h2>Page content</h2>
-              </div>
+              <Home/>
             </div>
              : <Redirect to="login"/>
           )}/>
-          
-        <Route exact path="/" component={() => (
-          (this.cookies.get('isLogin') !== 'false') ? <Home/> : <Redirect to="login"/>
-        )}/>
+
         <Route path="/login" component={Login}/>
         <Route path="/register" component={Register}/>
         </div>
