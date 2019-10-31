@@ -3,6 +3,7 @@ import SideBar from './SideBar';
 import Classes from './Classes';
 import Course4teacher from './Course4teacher';
 import SolutionContainer from './solution/SolutionContainer';
+import ModalAddInput from './ModalAddInput';
 
 class Home extends React.Component {
 
@@ -51,10 +52,6 @@ class Home extends React.Component {
         return <Course4teacher input={this.state.input}/>;
       case "solutions":
         return <SolutionContainer input={this.state.input} changeDetailSolution={this.changeDetailSolution}/>;
-      // case "detail-solution":
-      //   return <DetailSolution 
-      //             input_id={this.state.input_id}
-      //             solution={this.state.solution}/>;
       default:
         return <h3>nothing to show ban oi</h3>
     }
@@ -75,6 +72,9 @@ class Home extends React.Component {
           <div className="col-sm-10  content-page">
             {this.ngolanhuong()}
           </div>
+        </div>
+        <div>
+          <ModalAddInput/>
         </div>
       </div>
     );

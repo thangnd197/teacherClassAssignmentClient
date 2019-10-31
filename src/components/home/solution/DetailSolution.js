@@ -1,14 +1,16 @@
 import React from 'react';
 import {convertListWeeksToString} from '../utils.js';
 import ModalVisualize from './modal/ModalVisualize';
+import ModalStatistic from './modal/ModalStatistic';
+
 
 class DetailSolution extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      // input_id: props.input_id,
-      solution: props.solution
+      solution: props.solution,
+      input: props.input
     }
     this.convertListWeeksToString = convertListWeeksToString;
   }
@@ -63,6 +65,7 @@ class DetailSolution extends React.Component {
           </tbody>
         </table>
         <ModalVisualize solution={this.state.solution}/>
+        <ModalStatistic solution={this.state.solution} input={this.state.input}/>
       </div>
     )
   }

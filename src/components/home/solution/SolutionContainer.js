@@ -2,7 +2,6 @@ import React from 'react';
 import NavBar from './NavBar';
 import DetailSolution from './DetailSolution';
 import Solutions from './Solutions';
-import ModalStatistic from './modal/ModalStatistic';
 
 
 class SolutionContainer extends React.Component {
@@ -35,7 +34,7 @@ class SolutionContainer extends React.Component {
       case "list":
         return <Solutions input={this.state.input} changeDetailSolution={this.changeDetailSolution}/>
       case "detail":
-        return <DetailSolution solution={this.state.solution} />
+        return <DetailSolution solution={this.state.solution} input={this.state.input}/>
       default:
         break;
     }
@@ -49,8 +48,6 @@ class SolutionContainer extends React.Component {
         <div className="scroll-space-app">
           {this.switchPage()}
         </div>
-        <ModalStatistic/>
-        
       </div>
     )
   }
