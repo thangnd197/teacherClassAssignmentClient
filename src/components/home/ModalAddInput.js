@@ -32,7 +32,7 @@ class ModalAddInput extends React.Component {
     formData.append('name', this.state.inputName);
     formData.append('classList', this.state.classList);
     formData.append('courseForTeacherList', this.state.courseForTeacherList);
-
+    console.log(this.state)
     fetch(
       'http://localhost:8080/user/1/inputs/excel',
       {
@@ -65,13 +65,19 @@ class ModalAddInput extends React.Component {
                 <input type="text" id="input_name_input" className="form-control" placeholder="Input name" required autoFocus
                   value={this.state.inputName}
                   onChange={this.handleInputNameChange}/>
-                <input type="file" id="class_list_input" className="form-control" placeholder="Class list" required autoFocus
-                  onChange={this.handleClassListChange}/>
-                <input type="file" id="course_for_teacher_input" className="form-control" placeholder="Course for teacher list" required autoFocus
-                  onChange={this.handleCourseForTeacherListChange}/>
+                <div>
+                  <h5>Class List</h5>
+                  <input type="file" id="class_list_input" className="form-control" placeholder="Class list" required autoFocus 
+                    onChange={this.handleClassListChange}/>
+                </div>
+                <div>
+                  <h5>Course for Teacher</h5>
+                  <input type="file" id="course_for_teacher_input" className="form-control" placeholder="Course for teacher list" required autoFocus
+                    onChange={this.handleCourseForTeacherListChange}/>
+                </div>
               </div>
               <div className="modal-footer">
-                <button type="submit" className="btn btn-primary" >Save changes</button>
+                <button type="submit" className="btn btn-primary" >Submit</button>
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </form>
