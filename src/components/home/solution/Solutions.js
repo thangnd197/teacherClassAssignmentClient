@@ -1,5 +1,6 @@
 import React from 'react';
 import ModalSolution from './modal/ModalSolution';
+import ModalManualSolution from './modal/ModalManualSolution';
 
 class Solutions extends React.Component {
 
@@ -76,6 +77,7 @@ class Solutions extends React.Component {
       case 0: return "solving";
       case 1: return "solved";
       case 2: return "modified";
+      case 3: return "manual";
       default: return "unknown";
     }
   }
@@ -103,6 +105,8 @@ class Solutions extends React.Component {
         <ModalSolution 
           input_id={this.state.input.id}
           fetchData={this.fetchData}/>
+        
+        <ModalManualSolution input_id={this.state.input.id}/>
       </div>
     )
   }

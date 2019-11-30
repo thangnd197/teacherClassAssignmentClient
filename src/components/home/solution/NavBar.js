@@ -23,6 +23,10 @@ class NavBar extends React.Component {
           <button id="create-btn" type="button" className="btn btn-primary nav-button" data-toggle="modal" data-target="#exampleModal">
             creat new
           </button>
+
+          <button id="create-btn" type="button" className="btn btn-primary nav-button" data-toggle="modal" data-target="#modalAddManualSolution">
+            add manual
+          </button>
         </div>
         );
       case 'detail':
