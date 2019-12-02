@@ -32,7 +32,7 @@ class ModalAddInput extends React.Component {
     formData.append('name', this.state.inputName);
     formData.append('classList', this.state.classList);
     formData.append('courseForTeacherList', this.state.courseForTeacherList);
-    console.log(this.state)
+    
     fetch(
       'http://localhost:8080/user/1/inputs/excel',
       {

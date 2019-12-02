@@ -8,7 +8,7 @@ class Solutions extends React.Component {
     super(props);
     this.state = {
       solutions: [],
-      // parameters: [],
+      class: [],
       input: props.input
     }
     this.changeDetailSolution = this.props.changeDetailSolution;

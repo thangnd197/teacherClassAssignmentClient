@@ -24,7 +24,7 @@ class ModalStatistic extends React.Component{
     ).then(
       (res) => {
         this.setState({checker: res});
-        console.log(this.state.checker);
+        
       }
     );
   }

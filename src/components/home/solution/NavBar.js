@@ -5,14 +5,21 @@ class NavBar extends React.Component {
     super(props);
     this.state = {
       type: props.typeNavBar,
+      solution: this.props.solution,
+      input: this.props.input
     }
+    this.handleClickDownload = this.handleClickDownload.bind(this);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.typeNavBar !== prevState.type) {
-      return ({ type: nextProps.typeNavBar }); // <- this is setState equivalent
+      return ({ type: nextProps.typeNavBar, solution: nextProps.solution}); // <- this is setState equivalent
     }
     return prevState;
+  }
+
+  handleClickDownload() {
+    window.open('http://localhost:8080/input/' + this.state.input.id + '/solution/excel/' + this.state.solution.id);
   }
 
   switchRender() {
@@ -37,6 +44,9 @@ class NavBar extends React.Component {
           </button>
           <button id="vis-btn" type="button" className="btn btn-primary nav-button" data-toggle="modal" data-target="#modalVisualize">
             visualize
+          </button>
+          <button id="download-btn" type="button" className="btn btn-primary nav-button" onClick={this.handleClickDownload}>
+            download
           </button>
         </div>
         );

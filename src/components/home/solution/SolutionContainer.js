@@ -17,8 +17,11 @@ class SolutionContainer extends React.Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.input.id !== prevState.input.id) {
-      return ({ input: nextProps.input }); // <- this is setState equivalent
+      return ({input: nextProps.input});
     }
+    // if (prevState.solution !== nextProps.solution) {
+    //   return ({solution: nextProps.solution});
+    // }
     return prevState;
   }
 
@@ -44,7 +47,7 @@ class SolutionContainer extends React.Component {
     
     return (
       <div>
-        <NavBar typeNavBar={this.state.typeSolutionPage}/>
+        <NavBar typeNavBar={this.state.typeSolutionPage} solution={this.state.solution} input={this.state.input}/>
         <div className="scroll-space-app">
           {this.switchPage()}
         </div>

@@ -10,9 +10,32 @@ class DetailSolution extends React.Component {
     super(props);
     this.state = {
       solution: props.solution,
-      input: props.input
+      input: props.input,
+      class: []
     }
     this.convertListWeeksToString = convertListWeeksToString;
+  }
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    
+    fetch(
+      'http://localhost:8080/input/' + this.state.input.id +'/invalidClass'
+    ).then(
+      res => {
+        return res.json();
+      }
+    ).then(
+      (res) => {
+        res.forEach(element => {
+          element.jsonClass = JSON.parse(element.jsonClass);
+        });
+        this.setState({class: res});
+      }
+    );   
   }
 
   contentTable() {
@@ -25,7 +48,7 @@ class DetailSolution extends React.Component {
         var theClass = assignment.assignedClasses[j];
         const tmp = 
           <tr key={assignment.teacher.code + '-' + theClass.code + theClass.course.type} className="row-table">
-            <td>{assignment.teacher.code}</td>
+            <td>{assignment.teacher.name}</td>
             <td>{assignment.teacher.code}</td>
             <td>{theClass.code}</td>
             <td>{theClass.course.code}</td>
@@ -39,6 +62,40 @@ class DetailSolution extends React.Component {
         content.push(tmp);
       }
     }
+    
+    if (this.state.class.length === 0) return content;
+
+    for (var i in this.state.class) {
+      var theClass = this.state.class[i].jsonClass;
+
+      var str = "";
+      if (this.state.class[i].isConflict === 1) {
+        str = "class has non teacher";
+      }
+      if (this.state.class[i].isNonTeacher === 1) {
+        str = "conflict with another class";
+      }
+
+      if ((this.state.class[i].isConflict === 1) && (this.state.class[i].isNonTeacher === 1)) {
+        str = "conflict and has non teacher";
+      }
+
+      const tmp = 
+          <tr key={theClass.code + theClass.course.type} className="row-table">
+            <td>{str}</td>
+            <td>{str}</td>
+            <td>{theClass.code}</td>
+            <td>{theClass.course.code}</td>
+            <td>{theClass.course.type}</td>
+            <td>{theClass.course.name}</td>
+            <td>{theClass.credit}</td>
+            <td>{theClass.timeTable.map((t) => t.startTime + "-" + t.endTime + "; ")}</td>
+            <td>{theClass.timeTable.map((t) => this.convertListWeeksToString(t.weeks) + "; ")}</td>
+            <td>{theClass.timeTable.map((t) => t.location + "; ")}</td>
+          </tr>;
+      content.push(tmp);
+    }
+
     return content;
   }
 
