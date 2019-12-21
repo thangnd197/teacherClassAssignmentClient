@@ -59,15 +59,16 @@ class Solutions extends React.Component {
       (s) =>
         <tr key={s.parameterModel.id} className="row-table">
           <td>{s.parameterModel.id}</td>
-          <td>{s.parameterModel.tabulen}</td>
-          <td>{s.parameterModel.maxTime}</td>
-          <td>{s.parameterModel.maxIter}</td>
-          <td>{s.parameterModel.maxStable}</td>
           <td>
             <button className={this.convertStatusSolver(s.solverStatus)} onClick={() => this.handleClickStatus(s.id)}>
               {this.convertStatusSolver(s.solverStatus)}
             </button>
           </td>
+          <td>{s.parameterModel.tabulen}</td>
+          <td>{s.parameterModel.maxTime}</td>
+          <td>{s.parameterModel.maxIter}</td>
+          <td>{s.parameterModel.maxStable}</td>
+
         </tr>
     );
   }
@@ -90,11 +91,11 @@ class Solutions extends React.Component {
           <thead>
             <tr>
               <th>id</th>
+              <th>status</th>
               <th>tabulen</th>
               <th>max time</th>
               <th>max iteration</th>
               <th>max stable</th>
-              <th>Status</th>
             </tr>
           </thead>
           <tbody>

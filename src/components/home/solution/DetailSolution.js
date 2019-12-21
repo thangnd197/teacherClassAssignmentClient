@@ -65,8 +65,8 @@ class DetailSolution extends React.Component {
     
     if (this.state.class.length === 0) return content;
 
-    for (var i in this.state.class) {
-      var theClass = this.state.class[i].jsonClass;
+    for ( i in this.state.class) {
+      theClass = this.state.class[i].jsonClass;
 
       var str = "";
       if (this.state.class[i].isConflict === 1) {
