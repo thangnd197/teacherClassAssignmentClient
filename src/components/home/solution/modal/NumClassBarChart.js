@@ -41,8 +41,8 @@ class NumClassBarChart extends React.Component {
       datasets: [
         {
           label: 'Num Teacher',
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
+          backgroundColor: '#6384FF',
+          borderColor: '#6384FF',
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',
@@ -64,7 +64,15 @@ class NumClassBarChart extends React.Component {
                 display: true,
                 text: 'Num Class',
                 position: 'bottom'
-              }
+              },
+              scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
+                    }
+                }]
+            }
             }
           }
           data={this.state.data}/>

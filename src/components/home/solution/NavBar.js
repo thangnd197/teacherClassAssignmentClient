@@ -45,7 +45,7 @@ class NavBar extends React.Component {
           <button id="vis-btn" type="button" className="btn btn-primary nav-button" data-toggle="modal" data-target="#modalVisualize">
             visualize
           </button>
-          <button id="download-btn" type="button" className="btn btn-primary nav-button" onClick={this.handleClickDownload}>
+          <button id="download-btn" type="button" className="btn btn-success nav-button" onClick={this.handleClickDownload}>
             download
           </button>
         </div>

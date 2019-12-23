@@ -57,7 +57,7 @@ class ModalStatistic extends React.Component{
           <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Modal title</h5>
+                <h5 className="modal-title">Solution statistic</h5>
                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -72,6 +72,7 @@ class ModalStatistic extends React.Component{
                   <div><b>Số lớp bị phân nhiều hơn 1 giảng viên</b>: {this.state.checker.moreOneTeacherClasses.length}</div>
                   <div><b>Số lớp không được phân giảng viên: </b>: {this.state.checker.noAssignedClasses.length}</div>
                   <div><b>Tổng độ phù hợp: </b>: {this.state.checker.sumPriority}</div>
+                  <div><b>Thời gian xử lý: </b>: {this.state.solution.time} (s)</div>
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

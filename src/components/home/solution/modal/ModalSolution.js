@@ -20,7 +20,8 @@ class ModalSolution extends React.Component{
       maxIterBalance: 300,
       maxStableBalance: 100,
       
-      isCombine: "1"
+      isCombine: "1",
+      initStrategy: "random"
     };
 
     this.forceUpdateSolutions = props.fetchData;
@@ -40,6 +41,8 @@ class ModalSolution extends React.Component{
     this.handleIterChangeBalance = this.handleIterChangeBalance.bind(this);
     this.handleStableChangeBalance = this.handleStableChangeBalance.bind(this);
     this.handleTabulenChangeBalance = this.handleTabulenChangeBalance.bind(this);
+
+    this.handleOptionChangeInit = this.handleOptionChangeInit.bind(this);
   }
 
   handleCreateNew(e) {
@@ -61,6 +64,8 @@ class ModalSolution extends React.Component{
 
     formData.append('isCombine', parseInt(this.state.isCombine));
     formData.append('target', parseInt(this.state.target));
+
+    formData.append('initStrategy', this.state.initStrategy);
   
     fetch(
       'http://localhost:8080/input/' + this.state.input_id + '/parameter',
@@ -115,7 +120,13 @@ class ModalSolution extends React.Component{
 
   handleOptionChange(changeEvent) {
     this.setState({
-      isCombine: changeEvent.target.value
+      "isCombine": changeEvent.target.value
+    });
+  }
+
+  handleOptionChangeInit(changeEvent) {
+    this.setState({
+      "initStrategy": changeEvent.target.value
     });
   }
 
@@ -155,13 +166,31 @@ class ModalSolution extends React.Component{
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">parameter for create new solution</h5>
+              <h5 className="modal-title">Parameter for create new solution</h5>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <form onSubmit={this.handleCreateNew}>
               <div className="modal-body">
+              <h6>Initial strategy</h6>
+                <div className="row">
+                  <div className="col-md-4"><input type="radio" name="random" value="random" 
+                    checked={this.state.initStrategy === "random"}
+                    onChange={this.handleOptionChangeInit}/>
+                    random
+                  </div>
+                  <div className="col-md-4"><input type="radio" name="priority" value="priority"
+                    checked={this.state.initStrategy === "priority"}
+                    onChange={this.handleOptionChangeInit}/>
+                    priority
+                  </div>
+                  <div className="col-md-4"><input type="radio" name="violation" value="violation"
+                    checked={this.state.initStrategy === "violation"}
+                    onChange={this.handleOptionChangeInit}/>
+                    violation
+                  </div>
+                </div>
                 <h6>Target credit</h6>
                 <input type="number" id="target" className="form-control" placeholder="target credit" required autoFocus
                   value={this.state.target}

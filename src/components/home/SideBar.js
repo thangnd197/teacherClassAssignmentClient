@@ -69,7 +69,9 @@ class InputList extends React.Component {
     return (
       <div className="sidebar left ">
         <ul className="list-sidebar bg-defoult">
-          <button type="button" className="btn btn-primary nav-button" data-toggle="modal" data-target="#modalAddInput">add</button>
+          <button type="button" className="btn btn-outline-success nav-button add-new-input-btn" data-toggle="modal" data-target="#modalAddInput">
+            Add new input
+          </button>
           {listItems}
         </ul>
       </div>

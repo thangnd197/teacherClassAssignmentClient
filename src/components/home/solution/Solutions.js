@@ -64,6 +64,8 @@ class Solutions extends React.Component {
               {this.convertStatusSolver(s.solverStatus)}
             </button>
           </td>
+          <td>{s.parameterModel.initStrategy}</td>
+          <td>{s.parameterModel.tabulen === -1 ? "" : s.parameterModel.isCombine === 1? "combine" : "discrete"}</td>
           <td>{s.parameterModel.tabulen}</td>
           <td>{s.parameterModel.maxTime}</td>
           <td>{s.parameterModel.maxIter}</td>
@@ -92,6 +94,8 @@ class Solutions extends React.Component {
             <tr>
               <th>id</th>
               <th>status</th>
+              <th>initial strategy</th>
+              <th>search strategy</th>
               <th>tabulen</th>
               <th>max time</th>
               <th>max iteration</th>

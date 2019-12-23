@@ -34,8 +34,8 @@ class NumClassHorizonBarChart extends React.Component {
       datasets: [
         {
           label: 'Num Credit',
-          backgroundColor: 'rgba(255,99,132,0.2)',
-          borderColor: 'rgba(255,99,132,1)',
+          backgroundColor: '#6384FF',
+          borderColor: '#6384FF',
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(255,99,132,0.4)',
           hoverBorderColor: 'rgba(255,99,132,1)',

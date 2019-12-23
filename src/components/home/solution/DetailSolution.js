@@ -70,10 +70,10 @@ class DetailSolution extends React.Component {
 
       var str = "";
       if (this.state.class[i].isConflict === 1) {
-        str = "class has non teacher";
+        str = "conflict with another class";
       }
       if (this.state.class[i].isNonTeacher === 1) {
-        str = "conflict with another class";
+        str = "class has non teacher";
       }
 
       if ((this.state.class[i].isConflict === 1) && (this.state.class[i].isNonTeacher === 1)) {
