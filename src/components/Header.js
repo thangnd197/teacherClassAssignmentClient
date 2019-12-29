@@ -13,6 +13,8 @@ class Header extends React.Component {
 
   handleLogout() {
     const cookies = new Cookies();
+    cookies.remove("username");
+    cookies.remove("userToken");
     cookies.set("isLogin", false, { path: '/' });
     window.location.href = "/login";
   }

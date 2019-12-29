@@ -40,7 +40,7 @@ class Login extends React.Component {
           res = JSON.parse(res);
           const cookies = new Cookies();
           cookies.set('isLogin', true, { path: '/' });
-          cookies.set('username', this.state.user.username, { path: '/' });
+          cookies.set('userID', res.id, { path: '/' });
           cookies.set('userToken', res.token, { path: '/' });
           window.location.href="/";
         }

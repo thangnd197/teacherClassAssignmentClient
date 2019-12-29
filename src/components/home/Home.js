@@ -4,6 +4,7 @@ import Classes from './Classes';
 import Course4teacher from './Course4teacher';
 import SolutionContainer from './solution/SolutionContainer';
 import ModalAddInput from './ModalAddInput';
+import Cookies from 'universal-cookie';
 
 class Home extends React.Component {
 
@@ -20,8 +21,10 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    const cookie = new Cookies();
+    const userID = cookie.get("userID");
     fetch(
-      'http://localhost:8080/user/1/inputs'
+      'http://localhost:8080/user/'+ userID +'/inputs'
     ).then(
       res => {
         return res.json();
