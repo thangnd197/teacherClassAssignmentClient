@@ -55,10 +55,11 @@ class ModalVisualize extends React.Component{
               </button>
             </div>
               <div className="modal-body">
+                
                 <button className="btn btn-info nav-button" onClick={this.handleOnClickGraphTo1}>His Class/Teacher</button>
                 <button className="btn btn-info nav-button" onClick={this.handleOnClickGraphTo2}>His Credit/Teacher</button>
                 <button className="btn btn-info nav-button" onClick={this.handleOnClickGraphTo3}>No Credit/Teacher</button>
-                
+                <br/><br/>
                 {this.genGraph()}
               </div>
               <div className="modal-footer">

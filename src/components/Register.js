@@ -5,18 +5,38 @@ class Register extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {"username": ""};
+    this.state = {
+      username: "",
+      password: "",
+      passwordReType: "",
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChangeUserName = this.handleChangeUserName.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangePasswordReType = this.handleChangePasswordReType.bind(this);
   }
 
   handleChangeUserName(e) {
-    this.setState({"username": e.target.value});
+    this.setState({username: e.target.value});
+  }
+
+  handleChangePassword(e) {
+    this.setState({password: e.target.value});
+  }
+
+  handleChangePasswordReType(e) {
+    this.setState({passwordReType: e.target.value});
   }
 
   handleSubmit(e) {
+    if (this.state.password !== this.state.passwordReType) {
+      window.alert("passwords are not match !");
+      return;
+    }
+
     const formData = new FormData();
     formData.append('name', this.state.username);
+    formData.append('password', this.state.password);
   
     fetch(
       'http://localhost:8080/user',
@@ -36,13 +56,14 @@ class Register extends React.Component {
         <img id="profile-img" className="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"  alt="xxx"/>
         <p id="profile-name" className="profile-name-card"></p>
         <form className="form-signin">
-          <span id="reauth-email" className="reauth-email"></span>
-          {/* <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
-          <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
-          <input type="password" id="inputPasswordRetype" className="form-control" placeholder="Password" required/> */}
           <input id="username" className="form-control" placeholder="username" required autoFocus
             onChange={this.handleChangeUserName}/>
-          <br></br>
+          <br/>
+          <input type="password" id="inputPassword" className="form-control" placeholder="Password" required
+            onChange={this.handleChangePassword}/>
+          <input type="password" id="inputPasswordRetype" className="form-control" placeholder="Password" required
+            onChange={this.handleChangePasswordReType}/>
+          <br/>
           <button className="btn btn-lg btn-primary btn-block btn-signin" type="button"
             value={this.state.username}
             onClick={this.handleSubmit}

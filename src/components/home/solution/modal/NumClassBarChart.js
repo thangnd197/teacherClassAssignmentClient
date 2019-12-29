@@ -62,7 +62,7 @@ class NumClassBarChart extends React.Component {
               responsive: true,
               title: {
                 display: true,
-                text: 'Num Class',
+                text: 'Number of class per teacher',
                 position: 'bottom'
               },
               scales: {

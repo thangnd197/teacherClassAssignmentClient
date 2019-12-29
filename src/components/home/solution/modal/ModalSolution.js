@@ -12,7 +12,7 @@ class ModalSolution extends React.Component{
       maxIter: 1000,
       maxStable: 100,
 
-      tabulenPriority: 0,
+      tabulenPriority: 50,
       maxIterPriority: 300,
       maxStablePriority: 100,
 

@@ -8,7 +8,8 @@ class Login extends React.Component {
     super(props);
     this.state = {
       user: {
-        username: ''
+        username: '',
+        password: '',
       }
     }
     this.handleSignin = this.handleSignin.bind(this);
@@ -16,17 +17,47 @@ class Login extends React.Component {
 
   handleSignin(e) {
     e.preventDefault();
-    const cookies = new Cookies();
-    cookies.set('isLogin', true, { path: '/' });
-    cookies.set('username', this.state.user.username, { path: '/' });
-    window.location.href="/";
+
+    const formData = new FormData();
+    formData.append('name', this.state.user.username);
+    formData.append('password', this.state.user.password);
+
+    fetch(
+      'http://localhost:8080/user/login',
+      {
+        method: 'POST',
+        body: formData
+      }
+    ).then(
+      res => {
+        return res.text();
+      }
+    ).then(
+      (res) => {
+        if (res === "") {
+          window.alert("User or Password is not correct !!");
+        } else {
+          res = JSON.parse(res);
+          const cookies = new Cookies();
+          cookies.set('isLogin', true, { path: '/' });
+          cookies.set('username', this.state.user.username, { path: '/' });
+          cookies.set('userToken', res.token, { path: '/' });
+          window.location.href="/";
+        }
+      }
+    );
   }
 
   handleChangeUsername(e) {
-    this.setState({user: {username: e.target.value}});
+    this.setState({user: {username: e.target.value, password: this.state.user.password}});
+  }
+
+  handleChangePassword(e) {
+    this.setState({user: {password: e.target.value, username: this.state.user.username}});
   }
 
   render() {
+    console.log(this.state.user);
     return (
       <div className="container">
       <div className="card card-container">
@@ -43,6 +74,8 @@ class Login extends React.Component {
               </div> */}
               <input id="username" className="form-control" placeholder="username" required autoFocus
                 onChange={this.handleChangeUsername.bind(this)}/>
+              <input type="password" id="inputPassword" className="form-control" placeholder="password" required
+                onChange={this.handleChangePassword.bind(this)}/>
               <br/>
               <button className="btn btn-lg btn-primary btn-block btn-signin"
               type="submit">

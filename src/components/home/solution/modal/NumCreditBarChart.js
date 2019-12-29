@@ -40,7 +40,7 @@ class NumCreditBarChart extends React.Component {
       labels: _tmp,
       datasets: [
         {
-          label: 'Num Teacher',
+          label: 'Số giảng viên',
           backgroundColor: '#6384FF',
           borderColor: '#6384FF',
           borderWidth: 1,
@@ -61,11 +61,34 @@ class NumCreditBarChart extends React.Component {
           options={
             {
               responsive: true,
-              title: {
-                display: true,
-                text: 'Num Credit',
-                position: 'bottom'
-              }
+              legend: {
+                display: false
+              },
+              scales: {
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Số giảng viên",
+                      fontSize: 24
+                    },
+                    ticks: {
+                        suggestedMax: 25,    // minimum will be 0, unless there is a lower value.
+                        fontSize: 20
+                    },
+                }],
+                xAxes: [{
+                  display: true,
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Số tính chỉ",
+                    fontSize: 24
+                  },
+                  ticks: {
+                      fontSize: 20
+                  },
+              }]
+            }
             }
           }
           data={this.state.data}/>
